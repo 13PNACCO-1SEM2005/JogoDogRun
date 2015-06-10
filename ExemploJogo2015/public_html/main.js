@@ -1,86 +1,143 @@
 
-var game = new Phaser.Game(600, 300, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+var game = new Phaser.Game(1024, 512, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+
+
+
+var fundo;
+
+//var tempo = 0;
+
+//var teclado;
+
+var dog;
+
+//var buldog;
+//var rock;
+//var speed = 2;
+
+
 
 
 function preload() {
 
-    game.load.image('fundo01', 'fundos/cenario_temp.png');
-	
-    game.load.image('plata', 'fundos/plataforma.png');
-    game.load.spritesheet('boneco', 'sprite/correr/cao_acoes_corre.png',400,400);
+    
+	game.load.image('fundo01', 'bg/cen.png');
 
-    teclado = game.input.keyboard.createCursorKeys();
+	game.load.spritesheet('cao', 'sprite/cao/cao.png', 175, 100);
+
+	//game.load.spritesheet('bul', 'sprite/bul/bul.png', 120, 90);
+	//game.load.spritesheet('pedra', 'sprite/obj/pedra.png', 60,30);
+
+
+	//teclado = game.input.keyboard.createcursorkeys();
+
 
 }
 
-
-var fnd1, plata1;
-var teclado;
-var sprBoneco;
-var fundo01;
 
 
 
 
 function create() {
 
-	fundo01 = game.add.tileSprite(0,0,600,300, 'fundo01');
+
+
+	//    game.physics.startSystem(Phaser.Physics.ARCADE);
+
 	
-    game.physics.startSystem(Phaser.Physics.ARCADE);
+	fundo = game.add.tileSprite(0, 0, 1024, 512, 'fundo01');
 
-    fnd1 = game.add.sprite(0, 0, 'fundo01');
-    //plata1 = game.add.sprite(0, 170, 'plata');
-    //plata1.scale.y = 1.4;
+		
 
-    game.physics.arcade.enable(fnd1);
-    //game.physics.arcade.enable(plata1);
+	dog = game.add.sprite(100, 400, 'cao');
 
-    sprBoneco = game.add.sprite(400, 400, 'boneco');
-    sprBoneco.animations.add('dir', [0, 1, 2, 3], 11, true);
-    sprBoneco.animations.add('parado', [0], 10, true);
-    sprBoneco.animations.add('pulo', [1], 10, true);
-    game.physics.arcade.enable(sprBoneco);
-    sprBoneco.body.offset.y = -30;    
-    sprBoneco.body.offset.x = 30;    
+	dog.animations.add('parado', [0], 10, true);
 
-    //game.physics.enable(plata1, Phaser.Physics.ARCADE, true);
+	dog.animations.add('correr', [1, 2, 3, 4, 5, 6, 7, 8], 2, true);
+	dog.animations.add('rastejar', [9, 10, 11, 12, 13, 14, 15, 16], 8, true);
+	dog.animations.add('pular', [17, 18, 19, 20, 21, 22, 23, 24], 1, true);
+	dog.animations.add('tonto', [25, 26, 27, 28, 29, 30, 31, 32], 8, true);
+
+	//buldog = game.add.sprite(-100,-100, 'bul');
+	//buldog.animations.add('correr',[0, 1 ,2, 3, 4, 5, 6, 7], 8, true);
+
+	//rock = game.add.sprite(-100, -100, 'pedra');
+	//rock.animations.add('pedr', [0], 10, true);
+
+	//dog.enableBody = true;
+
+	//dog.body.gravity.y = 600;
+	//dog.body.bounce.y = 0;
+	
+	
+	//    game.physics.arcade.enable(sprBoneco);
+
+//    sprBoneco.body.offset.y = -30;
+    
+//    sprBoneco.body.offset.x = 30;
+    
+
+//    game.physics.enable(plata1, Phaser.Physics.ARCADE, true);
+
     //sprBoneco.body.bounce.y = 0.2;
-    sprBoneco.body.gravity.y = 300;
-    sprBoneco.body.collideWorldBounds = true;
 
-    //plata1.body.immovable = true;
+ //   sprBoneco.body.gravity.y = 600;
+
+ //   sprBoneco.body.collideWorldBounds = true;
+ 
+
+// ajusta o timer
+	
+//tempo = new Timer(game, false);
+
+	
+	//tempo.add
 
 
 }
+
+
 
 function update() {
-
-	fundo01.tilePosition.x -= 2;
+ 		
+	//dog.animations.play('parado', 10, true, false);
 	
-	game.physics.arcade.collide(sprBoneco, plata1);
+	//if (game.time = 200) {
+		fundo.tilePosition.x -= 2;
+	dog.animations.play('tonto');
+	//
 
-    if (teclado.left.isDown) {
-        fnd1.body.velocity.x = 200;
-       // plata1.body.velocity.x = 180;
-        sprBoneco.animations.play('dir');
-    }
-    else if (teclado.right.isDown) {
-        fnd1.body.velocity.x = -200;
-      //  plata1.body.velocity.x = -180;
-        sprBoneco.animations.play('dir');
-    }
-    else {
-       // plata1.body.velocity.x = 0;
-        sprBoneco.animations.play('parado');        
-        fnd1.body.velocity.x = 0;
-    }
 
-    //  Allow the player to jump if they are touching the ground.
-    if (teclado.up.isDown && sprBoneco.body.touching.down)
-    {
-        sprBoneco.animations.play('pulo');
-        sprBoneco.body.velocity.y = -1500;
-    }
+	//while (tempo < 10000) {
+	//	tempo = game.time.now;}
+	
+	//if (tempo = 10000) {
+	//	fundo.tilePosition.x -= 5;}
+	
+	//game.physics.arcade.collide(sprBoneco, plata1);
 
-}
+	// if (teclado.left.isDown) {
+        // fnd1.body.velocity.x = 200;
+        // plata1.body.velocity.x = 180;
+        // sprBoneco.animations.play('dir');
+    // }
+    // else if (teclado.right.isDown) {
+        // fnd1.body.velocity.x = -200;
+        // plata1.body.velocity.x = -180;
+        // sprBoneco.animations.play('dir');
+    // }
+    // else {
+        // plata1.body.velocity.x = 0;
+        // sprBoneco.animations.play('parado');
+        // fnd1.body.velocity.x = 0;
+    // }
+     
+//Allow the player to jump if they are touching the ground.
+    // if (teclado.up.isDown && sprBoneco.body.touching.down)
+    // {
+        // sprBoneco.animations.play('pulo');
+        // sprBoneco.body.velocity.y = -1500;
+    // 
 
+
+	}
