@@ -11,7 +11,7 @@ var load_state = {
         game.load.image('fundo01', 'assets/bg/cen.png');      	
         game.load.image('plat', 'assets/bg/plat.png');
 		game.load.audio('jump', 'assets/audio/jump.wav');   
-        game.load.image('pipe', 'assets/pipe.png');  
+        
         	
 		game.load.spritesheet('cao', 'assets/sprite/cao/cao.png', 175, 100);
 		game.load.image('pedra', 'assets/sprite/obj/pedra.png');		
@@ -43,7 +43,7 @@ var play_state = {
 		dog.body.gravity.y=200;              
                 
         this.rocks = game.add.group();
-        this.rocks.createMultiple(10, 'pipe');
+        this.rocks.createMultiple(10, 'pedra');
         this.timer = this.game.time.events.loop(3000, this.add_rocks, this);               
     },
     
